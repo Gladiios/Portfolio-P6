@@ -186,3 +186,23 @@ footer nav ul {
 	margin: 2em
 }
 
+.sorting {
+	display: flex;
+	justify-content: center;
+	gap: 50px;
+	margin-bottom: 30px;
+}
+
+.sorting-btn {
+	padding: 10px 18px 10px 18px;
+	border: 2px solid #1D6154;
+	border-radius: 20px;
+	font-weight: 700;
+	color: #1D6154;
+}
+
+.sorting-btn:hover {
+	color: white;
+	background-color: #1D6154;
+}
+
