@@ -1,85 +1,95 @@
 const gallery = document.querySelector(".gallery");
-const sortingBtn = document.querySelectorAll(".sorting-btn");
+const sortingBtns = document.querySelectorAll(".sorting-btn");
 
-let project = [
+const FilterType = {
+  HOTEL: "hotel",
+  APARTMENT: "apartment",
+  OBJECT: "object",
+};
+
+let projectImages = [
   {
     image: "./assets/images/abajour-tahina.png",
     text: "Abajour Tahina",
-    id: "object",
+    type: FilterType.OBJECT,
   },
   {
     image: "./assets/images/appartement-paris-v.png",
     text: "Appartement Paris V",
-    id: "apartment",
+    type: FilterType.APARTMENT,
   },
   {
     image: "./assets/images/appartement-paris-x.png",
     text: "Appartement Paris X",
-    id: "apartment",
+    type: FilterType.APARTMENT,
   },
   {
     image: "./assets/images/appartement-paris-xviii.png",
     text: "Appartement Paris XVIII",
-    id: "apartment",
+    type: FilterType.APARTMENT,
   },
   {
     image: "./assets/images/bar-lullaby-paris.png",
     text: "Bar Lullaby Paris",
-    id: "hotel",
+    type: FilterType.HOTEL,
   },
   {
     image: "./assets/images/hotel-first-arte-new-delhi.png",
     text: "Hotel First Arte New-Delhi",
-    id: "hotel",
+    type: FilterType.HOTEL,
   },
   {
     image: "./assets/images/la-balisiere.png",
     text: "La Balisiere",
-    id: "hotel",
+    type: FilterType.HOTEL,
   },
   {
     image: "./assets/images/le-coteau-cassis.png",
     text: "Le Coteau Cassis",
-    id: "hotel",
+    type: FilterType.HOTEL,
   },
   {
     image: "./assets/images/restaurant-sushisen-londres.png",
     text: "Restaurant Sushisen Londres",
-    id: "hotel",
+    type: FilterType.HOTEL,
   },
   {
     image: "./assets/images/structures-thermopolis.png",
     text: "Structure Thermopolis",
-    id: "object",
+    type: FilterType.OBJECT,
   },
   {
     image: "./assets/images/villa-ferneze.png",
     text: "Villa Ferneze",
-    id: "apartment",
+    type: FilterType.APARTMENT,
   },
 ];
 
 // Convertit le tableau en fonction de l'id
-let sortMethod = "all";
+let filter = "all";
 
-let filteredProjectsHotel = project.filter((item) => item.id === "hotel");
-
-let filteredProjectsApartment = project.filter(
-  (item) => item.id === "apartment"
+let hotelImages = projectImages.filter(
+  (projectImage) => projectImage.type === "hotel"
 );
 
-let filteredProjectsObject = project.filter((item) => item.id === "object");
+let apartmentImages = projectImages.filter(
+  (projectImage) => projectImage.type === "apartment"
+);
+
+let objectImages = projectImages.filter(
+  (projectImage) => projectImage.type === "object"
+);
 
 //Function d'affichage
-function projectDisplay() {
-  let filteredProjects = project;
+function filterProjects() {
+  let filteredProjects = projectImages;
 
-  if (sortMethod === "object") {
-    filteredProjects = filteredProjectsObject;
-  } else if (sortMethod === "apartment") {
-    filteredProjects = filteredProjectsApartment;
-  } else if (sortMethod === "hotel") {
-    filteredProjects = filteredProjectsHotel;
+  if (filter === "object") {
+    filteredProjects = objectImages;
+  } else if (filter === "apartment") {
+    filteredProjects = apartmentImages;
+  } else if (filter === "hotel") {
+    filteredProjects = hotelImages;
   }
 
   gallery.innerHTML = filteredProjects
@@ -87,7 +97,7 @@ function projectDisplay() {
       (galleryProject) =>
         `
           <div class="cardProject">
-            <id=${galleryProject.id}>
+            <id=${galleryProject.type}>
             <img src=${galleryProject.image} alt=${galleryProject.text}>
             <p>${galleryProject.text}</p>
           </div>
@@ -96,13 +106,13 @@ function projectDisplay() {
     .join("");
 }
 
-projectDisplay();
+filterProjects();
 
 // Permet de relancer la fonction au click et d'afficher les elements filtrés
-sortingBtn.forEach((btn) => {
+sortingBtns.forEach((btn) => {
   btn.addEventListener("click", (e) => {
-    sortMethod = e.target.id;
+    filter = e.target.id;
     console.log(e.target.id);
-    projectDisplay();
+    filterProjects();
   });
 });
