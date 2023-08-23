@@ -1,95 +1,27 @@
 const gallery = document.querySelector(".gallery");
 const sortingBtns = document.querySelectorAll(".sorting-btn");
-
-const FilterType = {
-  HOTEL: "hotel",
-  APARTMENT: "apartment",
-  OBJECT: "object",
+const categoryNames = {
+  1: "object",
+  2: "apartment",
+  3: "hotel",
 };
+// Data stocker dans ce tableau
+let projectImages = [];
 
-let projectImages = [
-  {
-    image: "./assets/images/abajour-tahina.png",
-    text: "Abajour Tahina",
-    type: FilterType.OBJECT,
-  },
-  {
-    image: "./assets/images/appartement-paris-v.png",
-    text: "Appartement Paris V",
-    type: FilterType.APARTMENT,
-  },
-  {
-    image: "./assets/images/appartement-paris-x.png",
-    text: "Appartement Paris X",
-    type: FilterType.APARTMENT,
-  },
-  {
-    image: "./assets/images/appartement-paris-xviii.png",
-    text: "Appartement Paris XVIII",
-    type: FilterType.APARTMENT,
-  },
-  {
-    image: "./assets/images/bar-lullaby-paris.png",
-    text: "Bar Lullaby Paris",
-    type: FilterType.HOTEL,
-  },
-  {
-    image: "./assets/images/hotel-first-arte-new-delhi.png",
-    text: "Hotel First Arte New-Delhi",
-    type: FilterType.HOTEL,
-  },
-  {
-    image: "./assets/images/la-balisiere.png",
-    text: "La Balisiere",
-    type: FilterType.HOTEL,
-  },
-  {
-    image: "./assets/images/le-coteau-cassis.png",
-    text: "Le Coteau Cassis",
-    type: FilterType.HOTEL,
-  },
-  {
-    image: "./assets/images/restaurant-sushisen-londres.png",
-    text: "Restaurant Sushisen Londres",
-    type: FilterType.HOTEL,
-  },
-  {
-    image: "./assets/images/structures-thermopolis.png",
-    text: "Structure Thermopolis",
-    type: FilterType.OBJECT,
-  },
-  {
-    image: "./assets/images/villa-ferneze.png",
-    text: "Villa Ferneze",
-    type: FilterType.APARTMENT,
-  },
-];
+//Function d'affichage et de tri par categorie
+async function filterProjects(category) {
+  await fetch("http://localhost:5678/api/works")
+    .then((res) => res.json())
+    .then((data) => (projectImages = data));
 
-// Convertit le tableau en fonction de l'id
-let filter = "all";
-
-let hotelImages = projectImages.filter(
-  (projectImage) => projectImage.type === "hotel"
-);
-
-let apartmentImages = projectImages.filter(
-  (projectImage) => projectImage.type === "apartment"
-);
-
-let objectImages = projectImages.filter(
-  (projectImage) => projectImage.type === "object"
-);
-
-//Function d'affichage
-function filterProjects() {
   let filteredProjects = projectImages;
+  console.log(filteredProjects);
 
-  if (filter === "object") {
-    filteredProjects = objectImages;
-  } else if (filter === "apartment") {
-    filteredProjects = apartmentImages;
-  } else if (filter === "hotel") {
-    filteredProjects = hotelImages;
+  // Permet de faire le tri au click
+  if (category !== "all") {
+    filteredProjects = projectImages.filter(
+      (project) => categoryNames[project.categoryId] === category
+    );
   }
 
   gallery.innerHTML = filteredProjects
@@ -97,22 +29,22 @@ function filterProjects() {
       (galleryProject) =>
         `
           <div class="cardProject">
-            <id=${galleryProject.type}>
-            <img src=${galleryProject.image} alt=${galleryProject.text}>
-            <p>${galleryProject.text}</p>
+            <id=${galleryProject.id}>
+            <img src=${galleryProject.imageUrl} alt=${galleryProject.text}>
+            <p>${galleryProject.title}</p>
           </div>
         `
     )
     .join("");
 }
 
-filterProjects();
+filterProjects("all");
 
 // Permet de relancer la fonction au click et d'afficher les elements filtrés
 sortingBtns.forEach((btn) => {
   btn.addEventListener("click", (e) => {
-    filter = e.target.id;
+    category = e.target.id;
     console.log(e.target.id);
-    filterProjects();
+    filterProjects(category);
   });
 });
