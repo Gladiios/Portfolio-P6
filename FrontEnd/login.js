@@ -1,15 +1,18 @@
-const loginEmail = "sophie.bluel@test.tld";
-const loginPassword = "S0phie";
-
+const user = {
+  isConnected: false,
+  email: "sophie.bluel@test.tld",
+  password: "S0phie",
+};
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
 const loginForm = document.querySelector(".login-form");
+
+let isConnected = false;
 
 loginForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   const enteredEmail = emailInput.value;
   const enteredPassword = passwordInput.value;
-
   const AuthentificationData = {
     email: enteredEmail,
     password: enteredPassword,
@@ -26,8 +29,9 @@ loginForm.addEventListener("submit", async (e) => {
 
     if (response.ok) {
       //Auth réussi
-      alert("Authentification réussi !");
-      window.location.href = "http://127.0.0.1:5500/FrontEnd/index.html";
+      const data = await response.json();
+      window.localStorage.setItem("Token", data.token);
+      alert("Authentification réussie !");
     } else {
       // Auth Echoué
       alert("Email ou mot de passe incorrect");
@@ -36,3 +40,6 @@ loginForm.addEventListener("submit", async (e) => {
     console.error("Erreur lors de l'authentification :", error);
   }
 });
+
+// creer un item en local qui est false
+// quand je me connecte, passer l'item en true

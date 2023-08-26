@@ -15,7 +15,6 @@ async function filterProjects(category) {
     .then((data) => (projectImages = data));
 
   let filteredProjects = projectImages;
-  console.log(filteredProjects);
 
   // Permet de faire le tri au click
   if (category !== "all") {
