@@ -23,20 +23,30 @@ async function filterProjects(category) {
     );
   }
 
-  gallery.innerHTML = filteredProjects
+  let galleryHTML = filteredProjects
     .map(
       (galleryProject) =>
         `
-          <div class="cardProject">
-            <id=${galleryProject.id}>
-            <img src=${galleryProject.imageUrl} alt=${galleryProject.text}>
-            <p>${galleryProject.title}</p>
-          </div>
-        `
+        <div class="cardProject">
+          <id=${galleryProject.id}>
+          <img src=${galleryProject.imageUrl} alt=${galleryProject.text}>
+          <p>${galleryProject.title}</p>
+        </div>
+      `
     )
     .join("");
-}
 
+  if (token === false) {
+    gallery.innerHTML = galleryHTML;
+  } else if (token === true) {
+    gallery.innerHTML = galleryHTML;
+
+    const modale = document.createElement("div");
+    modale.className = "modale";
+    modale.textContent = "modale";
+    gallery.appendChild(modale);
+  }
+}
 filterProjects("all");
 
 // Permet de relancer la fonction au click et d'afficher les elements filtrés

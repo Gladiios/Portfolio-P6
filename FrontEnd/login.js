@@ -1,13 +1,10 @@
 const user = {
-  isConnected: false,
   email: "sophie.bluel@test.tld",
   password: "S0phie",
 };
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
 const loginForm = document.querySelector(".login-form");
-
-let isConnected = false;
 
 loginForm.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -29,8 +26,8 @@ loginForm.addEventListener("submit", async (e) => {
 
     if (response.ok) {
       //Auth réussi
-      const data = await response.json();
-      window.localStorage.setItem("Token", data.token);
+      const responseData = await response.json();
+      window.localStorage.setItem("Token", responseData.token);
       alert("Authentification réussie !");
     } else {
       // Auth Echoué
