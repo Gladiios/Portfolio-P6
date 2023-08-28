@@ -213,7 +213,27 @@ footer nav ul {
 	color: white;
 	background-color: #1D6154;
 }
+
 /**************Modal******************/
+.project {
+	display: flex;
+	justify-content: center;
+}
+.btn-modifier-none {
+	display:none;
+}
+.btn-modifier {
+	margin-top: 10px;
+}
+.fa-pen-to-square {
+	font-size: 15px;
+	margin-left: 15px;
+}
+.btn-modifier button {
+	border: none;
+	background: white;
+	margin-bottom: 1.6em;
+}
 .modal-container {
 	display: none;
 	position: absolute;
@@ -241,7 +261,7 @@ footer nav ul {
 	border-radius: 12px;
 	background: #fff;
 	position: absolute;
-	top: 67%;
+	top: 10%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 }

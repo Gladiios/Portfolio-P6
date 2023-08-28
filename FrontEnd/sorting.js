@@ -5,7 +5,7 @@ const categoryNames = {
   2: "apartment",
   3: "hotel",
 };
-const modal = document.querySelector(".modal-container");
+const buttonProjet = document.querySelector(".btn-modifier");
 // Data stocker dans ce tableau
 let projectImages = [];
 
@@ -39,10 +39,9 @@ async function filterProjects(category) {
 
   if (token === false) {
     gallery.innerHTML = galleryHTML;
+    buttonProjet.classList.add("btn-modifier-none");
   } else if (token === true) {
-    gallery.innerHTML =
-      galleryHTML +
-      '<button class="modal-btn modal-trigger">Ajouter ou supprimer du contenu</button>';
+    gallery.innerHTML = galleryHTML;
   }
 }
 filterProjects("all");
