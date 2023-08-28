@@ -5,6 +5,7 @@ const categoryNames = {
   2: "apartment",
   3: "hotel",
 };
+const modal = document.querySelector(".modal-container");
 // Data stocker dans ce tableau
 let projectImages = [];
 
@@ -39,12 +40,9 @@ async function filterProjects(category) {
   if (token === false) {
     gallery.innerHTML = galleryHTML;
   } else if (token === true) {
-    gallery.innerHTML = galleryHTML;
-
-    const modale = document.createElement("div");
-    modale.className = "modale";
-    modale.textContent = "modale";
-    gallery.appendChild(modale);
+    gallery.innerHTML =
+      galleryHTML +
+      '<button class="modal-btn modal-trigger">Ajouter ou supprimer du contenu</button>';
   }
 }
 filterProjects("all");

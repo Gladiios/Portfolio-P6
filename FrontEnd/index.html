@@ -53,8 +53,23 @@
 			<span class="sorting-btn" id="apartment">Appartements</span>
 			<span class="sorting-btn" id="hotel">Hôtel & restaurants</span>
 		</div>
+		<div class="modal-container">
+			<div class="overlay modal-trigger">
+				<div class="modal">
+					<button class="close-modal modal-trigger">X</button>
+					<h3>Galerie Photo</h3>
+					<div class="modal-gallery">
+						<!-- display des images avec un bouton editer en dessous -->
+					</div>
+					<div class="add-delete">
+						<input type="submit" value="Ajouter une photo">
+						<p>Supprimer la galerie</p>
+					</div>
+				</div>				
+			</div>		
+		</div>			
 		<div class="gallery">
-			
+			<button class="modal-btn modal-trigger">Ajouter ou supprimer du contenu</button>
 		</div>
 	</section>
 	<section id="contact">
@@ -80,5 +95,6 @@
 </footer>
 <script src="./sorting.js"></script>
 <script src="./logged.js"></script>
+<script src ="./modal.js"></script>
 </body>
 </html>
