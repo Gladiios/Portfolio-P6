@@ -27,7 +27,7 @@ loginForm.addEventListener("submit", async (e) => {
     if (response.ok) {
       //Auth réussi
       const responseData = await response.json();
-      window.localStorage.setItem("Token", responseData.token);
+      window.localStorage.setItem("token", responseData.token);
       alert("Authentification réussie !");
     } else {
       // Auth Echoué
@@ -37,6 +37,3 @@ loginForm.addEventListener("submit", async (e) => {
     console.error("Erreur lors de l'authentification :", error);
   }
 });
-
-// creer un item en local qui est false
-// quand je me connecte, passer l'item en true

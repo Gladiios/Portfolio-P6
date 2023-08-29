@@ -1,6 +1,6 @@
 let token = false;
 
-if (window.localStorage.getItem("Token")) {
+if (window.localStorage.getItem("token")) {
   token = true;
 }
 console.log(token);
