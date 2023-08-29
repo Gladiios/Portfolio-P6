@@ -27,9 +27,8 @@ formSentData.addEventListener("submit", async (e) => {
   const enteredImage = inputFile.value;
   const enteredTitle = titleArea.value;
   const enteredId = category.value;
-  console.log(enteredId);
   const worksData = {
-    id: "",
+    id: 0,
     title: enteredTitle,
     imageUrl: enteredImage,
     categoryId: enteredId,
@@ -48,10 +47,12 @@ formSentData.addEventListener("submit", async (e) => {
 
     if (response.ok) {
       //Auth réussi
+
       alert("Envoie des données réussi !");
     } else {
       // Auth Echoué
       alert("Envoie échoué");
+      console.log(response);
     }
   } catch (error) {
     console.error("Erreur lors de l'envoie des données :", error);
