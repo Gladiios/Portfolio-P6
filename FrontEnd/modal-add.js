@@ -1,18 +1,15 @@
 const dropArea = document.getElementById("drop-area");
-const inputFile = document.getElementById("input-file");
 const imageView = document.getElementById("img-view");
 const returnArrow = document.getElementById("return-arrow");
-const formSentData = document.querySelector(".form");
+const formSendData = document.querySelector(".form");
+const inputFile = document.getElementById("input-file");
 const titleArea = document.getElementById("title");
-const category = document.getElementById("categorie");
-
-inputFile.addEventListener("change", uploadImage);
+const categoryModal = document.getElementById("categorie");
 
 function returnModal() {
   modalAddWindow.classList.remove("active");
   modalContainer.classList.toggle("active");
 }
-
 returnArrow.addEventListener("click", returnModal);
 
 function uploadImage() {
@@ -21,40 +18,41 @@ function uploadImage() {
   imageView.style.backgroundImage = `url(${imgLink})`;
   imageView.textContent = "";
 }
+inputFile.addEventListener("change", uploadImage);
 
-formSentData.addEventListener("submit", async (e) => {
+formSendData.addEventListener("submit", async (e) => {
   e.preventDefault();
-  const enteredImage = inputFile.value;
+  const selectedFile = inputFile.files[0]; // Get the selected file
+
+  if (!selectedFile) {
+    alert("Please select an image");
+    return;
+  }
+
   const enteredTitle = titleArea.value;
-  const enteredId = category.value;
-  const worksData = {
-    id: 0,
-    title: enteredTitle,
-    imageUrl: enteredImage,
-    categoryId: enteredId,
-    userId: 1,
-  };
+  const enteredId = categoryModal.value;
+
+  const worksData = new FormData(); // Use FormData to handle binary data
+  worksData.append("title", enteredTitle);
+  worksData.append("category", enteredId);
+  worksData.append("image", selectedFile); // Append the selected file to the FormData
 
   try {
-    const response = await fetch("http://localhost:5678/api/works", {
+    const sendData = await fetch("http://localhost:5678/api/works", {
       method: "POST",
       headers: {
-        "Content-type": "application/json",
-        Authorization: `Bearer ${window.localStorage.getItem("token")}`, // Include the token in the headers
+        Authorization: `Bearer ${window.localStorage.getItem("token")}`,
       },
-      body: JSON.stringify(worksData),
+      body: worksData, // Pass the FormData directly as the body
     });
 
-    if (response.ok) {
-      //Auth réussi
-
+    if (sendData.ok) {
       alert("Envoie des données réussi !");
     } else {
-      // Auth Echoué
       alert("Envoie échoué");
-      console.log(response);
+      console.log(await sendData.text());
     }
   } catch (error) {
-    console.error("Erreur lors de l'envoie des données :", error);
+    console.error("Erreur lors de l'envoi des données :", error);
   }
 });
