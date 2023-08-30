@@ -53,6 +53,7 @@ formSendData.addEventListener("submit", async (e) => {
       alert("Envoie des données réussi !");
       closeModalContainer();
       filterProjects("all");
+      openModal();
     } else {
       alert("Envoie échoué");
     }

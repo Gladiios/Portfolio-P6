@@ -65,6 +65,7 @@ async function openModal() {
           alert("Cet élément va être supprimé.");
           closeModalContainer();
           filterProjects("all");
+          openModal();
         }
       } catch (error) {
         console.error("Erreur lors de l'envoi des données :", error);
