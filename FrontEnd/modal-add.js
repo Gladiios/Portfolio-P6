@@ -23,14 +23,17 @@ inputFile.addEventListener("change", uploadImage);
 formSendData.addEventListener("submit", async (e) => {
   e.preventDefault();
   const selectedFile = inputFile.files[0]; // Get the selected file
-
-  if (!selectedFile) {
-    alert("Please select an image");
-    return;
-  }
-
   const enteredTitle = titleArea.value;
   const enteredId = categoryModal.value;
+
+  if (!selectedFile) {
+    alert("Image manquante");
+    return;
+  }
+  if (!enteredTitle) {
+    alert("");
+    return;
+  }
 
   const worksData = new FormData(); // Use FormData to handle binary data
   worksData.append("title", enteredTitle);
