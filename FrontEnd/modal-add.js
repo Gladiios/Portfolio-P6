@@ -51,6 +51,8 @@ formSendData.addEventListener("submit", async (e) => {
 
     if (sendData.ok) {
       alert("Envoie des données réussi !");
+      closeModalContainer();
+      filterProjects("all");
     } else {
       alert("Envoie échoué");
     }

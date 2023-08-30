@@ -63,6 +63,8 @@ async function openModal() {
         });
         if (deleteWork) {
           alert("Cet élément va être supprimé.");
+          closeModalContainer();
+          filterProjects("all");
         }
       } catch (error) {
         console.error("Erreur lors de l'envoi des données :", error);
