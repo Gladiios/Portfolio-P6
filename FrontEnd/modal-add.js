@@ -31,7 +31,7 @@ formSendData.addEventListener("submit", async (e) => {
     return;
   }
   if (!enteredTitle) {
-    alert("");
+    alert("Titre manquant");
     return;
   }
 
@@ -53,7 +53,6 @@ formSendData.addEventListener("submit", async (e) => {
       alert("Envoie des données réussi !");
     } else {
       alert("Envoie échoué");
-      console.log(await sendData.text());
     }
   } catch (error) {
     console.error("Erreur lors de l'envoi des données :", error);

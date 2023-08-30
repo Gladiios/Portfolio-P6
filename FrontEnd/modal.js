@@ -63,7 +63,6 @@ async function openModal() {
         });
         if (deleteWork) {
           alert("Cet élément va être supprimé.");
-          console.log(deleteWork);
         }
       } catch (error) {
         console.error("Erreur lors de l'envoi des données :", error);
