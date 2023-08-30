@@ -29,6 +29,7 @@ loginForm.addEventListener("submit", async (e) => {
       const responseData = await response.json();
       window.localStorage.setItem("token", responseData.token);
       alert("Authentification réussie !");
+      window.location.replace("index.html");
     } else {
       // Auth Echoué
       alert("Email ou mot de passe incorrect");

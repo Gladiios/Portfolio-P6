@@ -350,6 +350,10 @@ footer nav ul {
 	border-radius: 5px;
   }
 
+  .fa-trash-can {
+	cursor: pointer;
+  }
+
   .modal-container-add-content{
 	display: none;
 	position: absolute;

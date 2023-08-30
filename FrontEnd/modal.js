@@ -32,12 +32,11 @@ async function openModal() {
   await fetch("http://localhost:5678/api/works")
     .then((res) => res.json())
     .then((data) => (modalImages = data));
-
   modalGallery.innerHTML = modalImages
     .map(
       (modalContent) =>
         `
-       <div class = "modal-gallery-content">
+       <div class = "modal-gallery-content" data-id="${modalContent.id}">
         <div class="image-container">
           <img src=${modalContent.imageUrl} alt=${modalContent.text}>
           <i class="fa-solid fa-trash-can"></i>
@@ -47,5 +46,16 @@ async function openModal() {
        `
     )
     .join("");
+  const deleteTrashCans = document.querySelectorAll(".fa-trash-can");
+
+  deleteTrashCans.forEach((trashCan) => {
+    trashCan.addEventListener("click", (e) => {
+      //permet de recuperer le parent le plus proche
+      const modalGalleryContent = e.target.closest(".modal-gallery-content");
+      //recupere l'id correspondant a la trashcan
+      const id = modalGalleryContent.getAttribute("data-id");
+      console.log(id);
+    });
+  });
 }
 openModal();
