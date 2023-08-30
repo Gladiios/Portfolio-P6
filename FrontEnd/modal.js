@@ -54,7 +54,20 @@ async function openModal() {
       const modalGalleryContent = e.target.closest(".modal-gallery-content");
       //recupere l'id correspondant a la trashcan
       const id = modalGalleryContent.getAttribute("data-id");
-      console.log(id);
+      try {
+        const deleteWork = fetch("http://localhost:5678/api/works/" + id, {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+          },
+        });
+        if (deleteWork) {
+          alert("Cet élément va être supprimé.");
+          console.log(deleteWork);
+        }
+      } catch (error) {
+        console.error("Erreur lors de l'envoi des données :", error);
+      }
     });
   });
 }
