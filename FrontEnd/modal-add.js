@@ -5,6 +5,22 @@ const formSendData = document.querySelector(".form");
 const inputFile = document.getElementById("input-file");
 const titleArea = document.getElementById("title");
 const categoryModal = document.getElementById("categorie");
+const validateDataButton = document.getElementById("validatedata");
+
+// Update du le background-color du bouton valider
+function updateButtonColor() {
+  const selectedFile = inputFile.files[0];
+  const enteredTitle = titleArea.value;
+
+  if (selectedFile && enteredTitle) {
+    validateDataButton.style.backgroundColor = "#1D6154";
+  } else {
+    validateDataButton.style.backgroundColor = "";
+  }
+}
+// Event listener avec appel fonction updateButtonColor pour changer la couleur du bg
+inputFile.addEventListener("change", updateButtonColor);
+titleArea.addEventListener("input", updateButtonColor);
 
 function returnModal() {
   modalAddWindow.classList.remove("active");

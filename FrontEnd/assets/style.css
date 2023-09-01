@@ -177,7 +177,7 @@ margin: auto;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-input[type="submit"]{
+.submit-bottom {
 	font-family: 'Syne';
 	font-weight: 700;
 	color: white;
@@ -304,7 +304,7 @@ footer nav ul {
 	justify-content: center;
 }
 
-.modal input[type="submit"], .validate input[type="submit"]{
+#add-picture {
 	font-family: 'Syne';
 	font-weight: 700;
 	color: white;
@@ -318,6 +318,22 @@ footer nav ul {
 	display: flex;
 	justify-content: center;
 }
+
+.gray-bg {
+	font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	background-color: gray;
+	padding: 8px;
+	margin : 2em auto ;
+	width: 180px;
+	text-align: center;
+	border-radius: 60px ;
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+}
+
 
 .modal-gallery {
 	display: flex;
