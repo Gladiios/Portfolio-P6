@@ -383,9 +383,8 @@ footer nav ul {
 	display: none;
   }
   #drop-area {
-	width: 330px;
-	height: 120px;
-	padding: 20px;
+	width: 375px;
+	height: 140px;
 	margin-top: 30px;
 	background: #E8F1F6;
 	border-radius: 5px;
@@ -396,6 +395,9 @@ footer nav ul {
 	flex-direction: column;
 	width: 100%;
 	height: 100%;
+	background-size: contain;
+    background-repeat: no-repeat;
+    background-position-x: center;
   }
   #img-view i , #img-view p {
 	margin: 5px;
