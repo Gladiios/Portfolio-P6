@@ -6,23 +6,26 @@ const modalAddWindow = document.querySelector(".modal-container-add-content");
 const closeModal = document.querySelectorAll(".modal-close");
 let modalImages = [];
 
+// Ouvre la modal
 function toggleModal() {
   modalContainer.classList.toggle("active");
-}
-
-function closeModalContainer() {
-  modalAddWindow.classList.remove("active");
-  modalContainer.classList.remove("active");
 }
 
 modalTriggers.forEach((trigger) => {
   trigger.addEventListener("click", toggleModal);
 });
 
+// A l'appel, permet de fermer la modal au click sur la croix ou sur l'overlay
+function closeModalContainer() {
+  modalAddWindow.classList.remove("active");
+  modalContainer.classList.remove("active");
+}
+
 closeModal.forEach((closeAction) => {
   closeAction.addEventListener("click", closeModalContainer);
 });
 
+// Ferme la premiere fenetre et ouvre la seconde
 modalAddBtn.addEventListener("click", () => {
   modalContainer.classList.toggle("active");
   modalAddWindow.classList.toggle("active");

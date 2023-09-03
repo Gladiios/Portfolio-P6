@@ -22,6 +22,7 @@ function updateButtonColor() {
 inputFile.addEventListener("change", updateButtonColor);
 titleArea.addEventListener("input", updateButtonColor);
 
+// Permet de faire un retour avec la flèche dans la modal
 function returnModal() {
   modalAddWindow.classList.remove("active");
   modalContainer.classList.toggle("active");
@@ -29,13 +30,14 @@ function returnModal() {
 returnArrow.addEventListener("click", returnModal);
 
 function uploadImage() {
-  // give file uploaded in input file
+  // Affiche l'image upload
   let imgLink = URL.createObjectURL(inputFile.files[0]);
   imageView.style.backgroundImage = `url(${imgLink})`;
   imageView.textContent = "";
 }
 inputFile.addEventListener("change", uploadImage);
 
+// Formulaire d'envoi vers la db
 formSendData.addEventListener("submit", async (e) => {
   e.preventDefault();
   const selectedFile = inputFile.files[0]; // Get the selected file
@@ -51,10 +53,11 @@ formSendData.addEventListener("submit", async (e) => {
     return;
   }
 
-  const worksData = new FormData(); // Use FormData to handle binary data
+  // Creer un objet avec formdata auquel on ajoute le contenu grâce a append
+  const worksData = new FormData();
   worksData.append("title", enteredTitle);
   worksData.append("category", enteredId);
-  worksData.append("image", selectedFile); // Append the selected file to the FormData
+  worksData.append("image", selectedFile);
 
   try {
     const sendData = await fetch("http://localhost:5678/api/works", {
